@@ -110,7 +110,8 @@ class Table(object):
         self.deleted = bool(kwargs.get('deleted', False))
 
     def _truncate(self, model):
-        db_table = model._meta.db_table
+        """db_table change to your fias app' name or something else"""
+        db_table = 'fias_' + model.__name__.lower()
         connection = connections[router.db_for_write(model)]
         cursor = connection.cursor()
 
